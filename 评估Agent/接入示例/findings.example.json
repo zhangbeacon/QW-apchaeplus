@@ -1,0 +1,35 @@
+[
+  {
+    "id": "F-001",
+    "title": "未授权访问：网关接口按连续 ID 读取他人业务记录",
+    "severity": "high",
+    "asset": "https://app.example.com/api/gateway",
+    "description": "分发接口未校验登录态，也未校验记录归属；记录 ID 为连续数字，可枚举读取他人记录。对照：同会话调用需登录的方法返回「未登录」，证明是方法级鉴权缺失。",
+    "reproducibleSteps": [
+      "报文①：POST /api/gateway HTTP/1.1 Host: app.example.com Content-Type: application/json … 获取匿名令牌",
+      "报文②：POST /api/gateway HTTP/1.1 携带 token 头与解密后的记录 ID=100037，返回 HTTP 200",
+      "解密响应 d 字段得到 {\"code\":\"0\",\"data\":[{\"time\":\"2026-01-01 10:00:00\",\"value\":\"审批通过\"}]}",
+      "将 ID 替换为 100036、100035 均返回对应记录；不存在的 ID 返回 []"
+    ],
+    "evidence": {
+      "requestRef": "evidence/raw/F-001.http",
+      "responseSnippet": "{\"code\":\"0\",\"data\":[{\"time\":\"2026-01-01 10:00:00\"}]}"
+    },
+    "confidence": 0.95,
+    "foundBy": {"intent": "intent-3", "facts": ["fact-7", "fact-9"]}
+  },
+  {
+    "id": "F-002",
+    "title": "配置信息匿名泄露：登录策略接口未鉴权",
+    "severity": "low",
+    "asset": "https://app.example.com/api/gateway",
+    "description": "匿名可读取登录策略配置，含短信验证开关、本地登录开关等字段，可为后续绕过策略提供依据。",
+    "reproducibleSteps": [
+      "报文：POST /api/gateway HTTP/1.1 携带匿名令牌调用配置方法，返回 HTTP 200",
+      "解密响应得到 {\"SMSVerificationConfig\":\"0\",\"LocalLogin\":\"1\"}"
+    ],
+    "evidence": {"responseSnippet": "SMSVerificationConfig=0"},
+    "confidence": 0.9,
+    "foundBy": {"intent": "intent-4", "facts": ["fact-11"]}
+  }
+]

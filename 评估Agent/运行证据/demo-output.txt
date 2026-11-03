@@ -1,0 +1,40 @@
+# 评估 Agent 演示输出（demo）
+
+## 1) evidence_lint.py 自检（示例 findings）
+{
+  "verdict": "pass",
+  "findings": 2,
+  "counts": {
+    "high": 1,
+    "low": 1
+  },
+  "top_risks": [
+    {
+      "id": "F-001",
+      "severity": "high",
+      "title": "未授权访问：网关接口按连续 ID 读取他人业务记录"
+    }
+  ],
+  "issues": []
+}
+
+退出码: 0
+
+## 2) des_request.py 生成报文（示例密钥 01234567）
+=== PLAINTEXT ===
+auth  : {"f":"GetToken","c":"Public"}
+body  : {}
+
+=== VALUES ===
+Authorization-Enc: WXlHNUV+Rm7vdV5TterJrOzznRYHrrDW/1crVR6mIxQ=
+data_enc: knm1KG41POI=
+Content-Length: 27
+
+=== REQUEST (paste into Repeater) ===
+POST /api/gateway HTTP/1.1
+Host: app.example.com
+Content-Type: application/json
+Authorization-Enc: WXlHNUV+Rm7vdV5TterJrOzznRYHrrDW/1crVR6mIxQ=
+Content-Length: 27
+
+{"data_enc":"knm1KG41POI="}

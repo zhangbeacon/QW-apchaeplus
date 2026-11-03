@@ -1,0 +1,16 @@
+{
+  "verdict": "pass",
+  "findings": 2,
+  "counts": {
+    "high": 1,
+    "low": 1
+  },
+  "top_risks": [
+    {
+      "id": "F-001",
+      "severity": "high",
+      "title": "未授权访问：网关接口按连续 ID 读取他人业务记录"
+    }
+  ],
+  "issues": []
+}

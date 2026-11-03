@@ -1,0 +1,8 @@
+{"ts":"2026-11-03T17:20:00+08:00","run_id":"20261103-1720-ab12","type":"goal_created","target":"https://app.example.com","scope":["app.example.com"],"mode":"read-only"}
+{"ts":"2026-11-03T17:20:30+08:00","run_id":"20261103-1720-ab12","type":"intent_created","intent":"intent-1","title":"资产与服务确认","source":"agent"}
+{"ts":"2026-11-03T17:21:10+08:00","run_id":"20261103-1720-ab12","type":"fact_recorded","intent":"intent-1","fact":"fact-2","kind":"http","detail":"200 OK, Server: nginx"}
+{"ts":"2026-11-03T17:22:05+08:00","run_id":"20261103-1720-ab12","type":"intent_created","intent":"intent-2","title":"网关鉴权模型验证","source":"agent"}
+{"ts":"2026-11-03T17:24:00+08:00","run_id":"20261103-1720-ab12","type":"finding_confirmed","finding":"F-001","intent":"intent-3","severity":"high"}
+{"ts":"2026-11-03T17:24:40+08:00","run_id":"20261103-1720-ab12","type":"finding_confirmed","finding":"F-002","intent":"intent-4","severity":"low"}
+{"ts":"2026-11-03T17:25:30+08:00","run_id":"20261103-1720-ab12","type":"lint","verdict":"pass","findings":2}
+{"ts":"2026-11-03T17:25:31+08:00","run_id":"20261103-1720-ab12","type":"run_end","verdict":"pass"}

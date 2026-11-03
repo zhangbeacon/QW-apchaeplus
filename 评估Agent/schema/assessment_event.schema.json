@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "assessment stage event",
+  "type": "object",
+  "required": ["type", "stage"],
+  "properties": {
+    "type": {"enum": ["assessment_done", "assessment_fail"]},
+    "stage": {"const": "assessment"},
+    "verdict": {"enum": ["pass", "fail"]},
+    "findings": {"type": "integer", "minimum": 0},
+    "counts": {
+      "type": "object",
+      "properties": {
+        "critical": {"type": "integer"},
+        "high": {"type": "integer"},
+        "medium": {"type": "integer"},
+        "low": {"type": "integer"},
+        "info": {"type": "integer"}
+      },
+      "additionalProperties": false
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding": {"type": "string"},
+          "kind": {"type": "string"},
+          "detail": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "duration_sec": {"type": "number"},
+    "source": {"type": "string"}
+  }
+}

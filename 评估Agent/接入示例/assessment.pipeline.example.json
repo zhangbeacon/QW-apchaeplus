@@ -1,0 +1,29 @@
+{
+  "project": "demo-assessment",
+  "base_dir": ".",
+  "workdir": "work",
+  "log_dir": "logs",
+  "evidence_dir": "evidence",
+  "snapshot_dirs": [],
+  "clean_cmd": ["bash", "scripts/clean.sh"],
+  "stages": [
+    {"name": "build", "cmd": ["bash", "scripts/build.sh"], "timeout": 900, "retries": 1, "snapshot": false},
+    {"name": "functional", "cmd": ["bash", "scripts/functional.sh"], "timeout": 120, "retries": 1, "snapshot": false},
+    {"name": "security", "cmd": ["bash", "scripts/security.sh"], "timeout": 600, "retries": 1, "snapshot": false},
+    {"name": "assessment",
+     "cmd": ["python", "scripts/evidence_lint.py",
+             "--findings", "evidence/findings.json",
+             "--out", "evidence/assessment.json"],
+     "timeout": 120, "retries": 0, "snapshot": false}
+  ],
+  "audit": {
+    "required": ["functional.ok", "security.json", "assessment.json"],
+    "max_age_sec": 1800,
+    "expected_json": {
+      "security.json": {"verdict": "pass"},
+      "assessment.json": {"verdict": "pass"}
+    }
+  },
+  "budgets": {"max_stage_retries": 2, "max_total_retries": 5, "max_log_mb": 64, "max_rss_mb": 2048},
+  "llm": {"enabled": false}
+}
