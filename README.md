@@ -82,12 +82,12 @@ python -m variant_supervisor watch \
 
 接口字段见 `监管Agent-接口契约.md`。
 
-## 7. 评估 Agent（新增）
+## 7. 评估 Agent
 
-仓库新增 评估Agent/：对已授权目标做资产与漏洞评估，产出**可复现证据**（命令 / HTTP 报文）与分级建议。
+仓库新增 评估Agent/：对已授权目标做资产与漏洞评估，产出可复现证据（命令 / HTTP 报文）与分级建议。
 
 - 设计：goal → intent → fact → finding 四层链路，finding 无复现步骤不入库；
 - 工具：通用加密报文构造器、CDP 浏览器取证钩子、findings 自检脚本；
-- 接入：作为 ssessment 阶段挂载，审计只认 evidence/assessment.json 的 erdict。
+- 接入：作为 assessment 阶段挂载，审计只认 evidence/assessment.json 的 verdict。
 
 见 [评估Agent/README.md](评估Agent/README.md)。
