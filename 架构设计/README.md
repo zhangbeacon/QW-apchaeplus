@@ -8,7 +8,8 @@
 |---|---|
 | [Qw9-Apache-系统架构设计-v2.md](Qw9-Apache-系统架构设计-v2.md) | **当前有效版本**：两项核心创新＋五项支撑机制＋模块/契约/门禁/路线 |
 | [V2V3自动化生成实现方案.md](V2V3自动化生成实现方案.md) | **实现方案**：V2 加固编译栈 + V3 资源边界隔离，含纠错与 go/no-go 门 |
-| [变体生成Agent设计.md](变体生成Agent设计.md) | **Agent 设计**：事件总线 + 两级诊断 + 工具白名单 + L1/L2 权限模型 |
+| [变体生成Agent设计.md](变体生成Agent设计.md) | **Agent 设计（旧版，单 Agent）**：事件总线 + 两级诊断 + 工具白名单 + L1/L2 权限模型 |
+| [执行Agent-变体生成-设计.md](执行Agent-变体生成-设计.md) | **A1 执行 Agent（三 Agent 版）**：边界、12 步主流程、12 个候选、V2 挑选、失败处理、代码结构 |
 | [../platform/](../platform/README.md) | **实现代码**（qw9 CLI：build/repro/isolate/contract/matrix/p0） |
 | [Qw9-Apache-总体架构-v2.png](Qw9-Apache-总体架构-v2.png) | v2 总体架构图 |
 | [赛题要求-创新点-架构落点.md](赛题要求-创新点-架构落点.md) | 官方要求、评分表、原创创新点逐项落点与现状 |
