@@ -1,0 +1,53 @@
+{
+  "project": "demo-apache-44224",
+  "base_dir": ".",
+  "workdir": "demo/work",
+  "log_dir": "demo/logs",
+  "evidence_dir": "demo/evidence",
+  "snapshot_dirs": ["demo/work/src"],
+  "clean_cmd": ["{python}", "demo/clean.py"],
+  "stages": [
+    {
+      "name": "build",
+      "cmd": ["{python}", "demo/fake_build.py"],
+      "timeout": 10,
+      "retries": 2,
+      "description": "build the variant (demo: fails once with a stale port)"
+    },
+    {
+      "name": "functional",
+      "cmd": ["{python}", "demo/fake_functional.py"],
+      "timeout": 10,
+      "retries": 1,
+      "description": "golden traffic diff",
+      "snapshot": false
+    },
+    {
+      "name": "security",
+      "cmd": ["{python}", "demo/fake_security.py"],
+      "timeout": 10,
+      "retries": 1,
+      "description": "positive PoC + negative control",
+      "snapshot": false
+    }
+  ],
+  "audit": {
+    "required": ["functional.ok", "security.json", "negative.ok"],
+    "max_age_sec": 300,
+    "expected_json": {
+      "security.json": {"verdict": "pass", "negative_control": true}
+    }
+  },
+  "budgets": {
+    "max_stage_retries": 2,
+    "max_total_retries": 5,
+    "max_log_mb": 2,
+    "max_rss_mb": 256
+  },
+  "llm": {
+    "enabled": false,
+    "model": "deepseek-chat",
+    "base": "https://api.deepseek.com/v1",
+    "api_key_env": "DEEPSEEK_API_KEY"
+  }
+}

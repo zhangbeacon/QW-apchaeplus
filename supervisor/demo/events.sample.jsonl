@@ -1,0 +1,1 @@
+{"type":"stage_fail","stage":"build","exit_code":1,"timed_out":false,"log_too_big":false,"rss_exceeded":false,"duration_sec":0.5,"peak_rss_mb":10,"log":"demo/logs/watch_sample.log"}

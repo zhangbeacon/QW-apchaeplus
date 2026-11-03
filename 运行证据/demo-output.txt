@@ -1,0 +1,14 @@
+﻿[supervisor] run 20261103-171934-b8a0 project=demo-apache-44224
+[supervisor] build attempt 1/3
+[supervisor] build FAIL cause=PORT_CONFLICT action=clean (rule)
+[supervisor] build attempt 2/3
+[supervisor] build OK (0.11s, 1.9 MB)
+[supervisor] functional attempt 1/2
+[supervisor] functional OK (0.11s, 1.9 MB)
+[supervisor] security attempt 1/2
+[supervisor] security OK (0.11s, 1.9 MB)
+[supervisor] audit OK
+[supervisor] verdict=PASS retries=1
+
+verdict: PASS
+journal: C:\Users\28637\Documents\deepseek-harness\default-workspace\qw_supervisor\supervisor\demo\logs\journal.jsonl

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+supervisor/demo/logs/
+supervisor/demo/evidence/
+supervisor/demo/work/state.json
+supervisor/demo/work/*.marker

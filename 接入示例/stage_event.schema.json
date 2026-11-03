@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "supervisor stage event",
+  "type": "object",
+  "required": ["type", "stage"],
+  "properties": {
+    "type": {"enum": ["stage_fail", "audit_fail"]},
+    "stage": {"type": "string"},
+    "exit_code": {"type": ["integer", "null"]},
+    "timed_out": {"type": "boolean"},
+    "log_too_big": {"type": "boolean"},
+    "rss_exceeded": {"type": "boolean"},
+    "duration_sec": {"type": "number"},
+    "peak_rss_mb": {"type": "number"},
+    "log": {"type": "string"},
+    "issues": {"type": "array"},
+    "source": {"type": "string"}
+  }
+}
