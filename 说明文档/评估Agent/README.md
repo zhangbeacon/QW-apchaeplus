@@ -22,15 +22,10 @@
 ## 2. 目录
 
 ```text
-评估Agent/
+说明文档/评估Agent/
   README.md                    # 本文件
   评估Agent-设计说明.md         # 链路、角色、证据纪律、边界
   评估Agent-接口契约.md         # config / event / findings / evidence / journal 五套契约
-  scripts/
-    des_request.py             # 通用加密请求构造器（把明文参数转成可直接粘贴的报文）
-    browser_harness.js         # CDP 浏览器取证钩子（Node，零依赖）
-    cdp_probe.py               # browser_harness 的 Python 包装
-    evidence_lint.py           # findings 自检与 assessment.json 生成
   schema/
     findings.schema.json
     assessment_event.schema.json
@@ -38,13 +33,26 @@
     assessment.pipeline.example.json
     findings.example.json
     journal.example.jsonl
+  运行证据/
+    assessment.json
+    demo-output.txt
+
+项目源码/评估Agent/scripts/
+  des_request.py               # 通用加密请求构造器（把明文参数转成可直接粘贴的报文）
+  browser_harness.js           # CDP 浏览器取证钩子（Node，零依赖）
+  cdp_probe.py                 # browser_harness 的 Python 包装
+  evidence_lint.py             # findings 自检与 assessment.json 生成
 ```
 
 ## 3. 快速开始
 
 ```bash
+# 0) 进代码目录；示例数据仍在说明文档里
+cd 项目源码/评估Agent
+EX=../../说明文档/评估Agent/接入示例
+
 # 1) 自检示例 findings
-python scripts/evidence_lint.py --findings 接入示例/findings.example.json --out /tmp/assessment.json
+python scripts/evidence_lint.py --findings $EX/findings.example.json --out /tmp/assessment.json
 cat /tmp/assessment.json
 
 # 2) 生成一条可直接粘贴到 Burp Repeater 的报文
