@@ -1,0 +1,107 @@
+
+$ a2 freeze --rules C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\rules.json --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state
+{
+  "hash": "80a2114bdb7af0cfd266028e5984eef18d691619639d128793cd6cb5f18d1b81",
+  "frozen_at": "2026-11-04T19:32:42+0800",
+  "rules_path": "C:\\Users\\28637\\Documents\\deepseek-harness\\default-workspace\\a2_submit\\项目源码\\demo\\rules.json",
+  "rule_version": "1.0"
+}
+[exit 0]
+
+$ a2 request --rules C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\rules.json --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --action build --target V2 --eta 300
+{
+  "id": "dec-20261104-193242-ddda",
+  "ts": "2026-11-04T19:32:42+0800",
+  "request": {
+    "action": "build",
+    "target": "V2",
+    "params": {},
+    "eta": "300",
+    "requester": "A1"
+  },
+  "decision": "approve",
+  "reason": "ok"
+}
+[exit 0]
+
+$ a2 request --rules C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\rules.json --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --action target --target V2
+{
+  "id": "dec-20261104-193242-e933",
+  "ts": "2026-11-04T19:32:42+0800",
+  "request": {
+    "action": "target",
+    "target": "V2",
+    "params": {},
+    "eta": "",
+    "requester": "A1"
+  },
+  "decision": "reject",
+  "reason": "G4 not passed; target/expand is not allowed"
+}
+[exit 2]
+
+$ a2 gate --rules C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\rules.json --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --functional C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\functional.json --results C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\results.json
+{
+  "G0": {
+    "pass": true,
+    "reason": "spec frozen"
+  },
+  "G1": {
+    "pass": true,
+    "reason": "clean build/env manifest present"
+  },
+  "G2": {
+    "pass": true,
+    "reason": "7/7 capabilities pass",
+    "run_id": "demo-run-001"
+  },
+  "G3": {
+    "pass": true,
+    "reason": "V1 positive + fixed negative present"
+  },
+  "G4": {
+    "pass": true,
+    "reason": "3 independent differences"
+  }
+}
+[exit 0]
+
+$ a2 request --rules C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\rules.json --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --action target --target V2
+{
+  "id": "dec-20261104-193242-ae59",
+  "ts": "2026-11-04T19:32:42+0800",
+  "request": {
+    "action": "target",
+    "target": "V2",
+    "params": {},
+    "eta": "",
+    "requester": "A1"
+  },
+  "decision": "approve",
+  "reason": "ok"
+}
+[exit 0]
+
+$ a2 begin --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --evidence C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\evidence --run-id demo-run-001
+{
+  "run_id": "demo-run-001",
+  "started_at": 1793791962.1744561,
+  "started_iso": "2026-11-04T19:32:42+0800",
+  "evidence_dir": "C:\\Users\\28637\\Documents\\deepseek-harness\\default-workspace\\a2_submit\\项目源码\\demo\\evidence"
+}
+[exit 0]
+
+$ a2 check --state C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\state --run-id demo-run-001 --evidence C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\demo\evidence --binary C:\Users\28637\Documents\deepseek-harness\default-workspace\a2_submit\项目源码\a2_gatekeeper\rules.py
+{
+  "pass": true,
+  "issues": []
+}
+[exit 0]
+
+=== timeline ===
+{"ts": "2026-11-04T19:32:42+0800", "seq": 1, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "build", "target": "V2", "params": {}, "eta": "300", "requester": "A1"}, "reason": "ok", "id": "dec-20261104-193242-ddda"}}
+{"ts": "2026-11-04T19:32:42+0800", "seq": 2, "actor": "A2", "action": "approval", "target": "V2", "result": "reject", "detail": {"request": {"action": "target", "target": "V2", "params": {}, "eta": "", "requester": "A1"}, "reason": "G4 not passed; target/expand is not allowed", "id": "dec-20261104-193242-e933"}}
+{"ts": "2026-11-04T19:32:42+0800", "seq": 3, "actor": "A2", "action": "gate", "target": "", "result": "evaluated", "detail": {"G0": true, "G1": true, "G2": true, "G3": true, "G4": true}}
+{"ts": "2026-11-04T19:32:42+0800", "seq": 4, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "target", "target": "V2", "params": {}, "eta": "", "requester": "A1"}, "reason": "ok", "id": "dec-20261104-193242-ae59"}}
+{"ts": "2026-11-04T19:32:42+0800", "seq": 5, "actor": "A2", "action": "archive", "target": "demo-run-001", "result": "fresh", "detail": {"evidence_dir": "C:\\Users\\28637\\Documents\\deepseek-harness\\default-workspace\\a2_submit\\项目源码\\demo\\evidence"}}
+{"ts": "2026-11-04T19:32:42+0800", "seq": 6, "actor": "A2", "action": "evidence_check", "target": "demo-run-001", "result": "pass", "detail": {"binary": "C:\\Users\\28637\\Documents\\deepseek-harness\\default-workspace\\a2_submit\\项目源码\\a2_gatekeeper\\rules.py"}}

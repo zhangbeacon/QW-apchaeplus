@@ -1,0 +1,38 @@
+{
+  "request": {
+    "type": "object",
+    "required": ["action", "target"],
+    "properties": {
+      "action": {"enum": ["build", "isolate", "target", "expand"]},
+      "target": {"type": "string"},
+      "params": {"type": "object"},
+      "eta": {"type": "string"},
+      "requester": {"type": "string"}
+    },
+    "not": {"anyOf": [{"required": ["rules"]}, {"required": ["rules_patch"]}, {"required": ["thresholds"]}]}
+  },
+  "decision": {
+    "type": "object",
+    "required": ["id", "ts", "request", "decision", "reason"],
+    "properties": {
+      "id": {"type": "string"},
+      "ts": {"type": "string"},
+      "request": {"type": "object"},
+      "decision": {"enum": ["approve", "reject", "need_evidence"]},
+      "reason": {"type": "string"}
+    }
+  },
+  "timeline": {
+    "type": "object",
+    "required": ["ts", "seq", "actor", "action", "result"],
+    "properties": {
+      "ts": {"type": "string"},
+      "seq": {"type": "integer"},
+      "actor": {"type": "string"},
+      "action": {"enum": ["approval", "gate", "archive", "evidence_check"]},
+      "target": {"type": "string"},
+      "result": {"type": "string"},
+      "detail": {"type": "object"}
+    }
+  }
+}

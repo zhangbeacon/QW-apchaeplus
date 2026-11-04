@@ -1,0 +1,3 @@
+{"id": "dec-20261104-193242-ddda", "ts": "2026-11-04T19:32:42+0800", "request": {"action": "build", "target": "V2", "params": {}, "eta": "300", "requester": "A1"}, "decision": "approve", "reason": "ok"}
+{"id": "dec-20261104-193242-e933", "ts": "2026-11-04T19:32:42+0800", "request": {"action": "target", "target": "V2", "params": {}, "eta": "", "requester": "A1"}, "decision": "reject", "reason": "G4 not passed; target/expand is not allowed"}
+{"id": "dec-20261104-193242-ae59", "ts": "2026-11-04T19:32:42+0800", "request": {"action": "target", "target": "V2", "params": {}, "eta": "", "requester": "A1"}, "decision": "approve", "reason": "ok"}
