@@ -1,0 +1,11 @@
+{
+  "schema": "qw9/scores/v1",
+  "run_id": "gen01",
+  "candidates": {
+    "c1": { "score": "N/A" },
+    "c2": { "score": 0.28, "detail": { "hde": 0.11, "per_cve": { "CVE-2021-44790": "SIGSEGV" } } },
+    "c3": { "score": 0.71, "detail": { "hde": 0.42, "per_cve": { "CVE-2021-44790": "SIGABRT" } } },
+    "c5": { "score": 0.04, "detail": { "hde": 0.02, "per_cve": {} } },
+    "i1": { "score": 0.00, "detail": { "note": "隔离轴不参与 V2 挑选，仅留档" } }
+  }
+}

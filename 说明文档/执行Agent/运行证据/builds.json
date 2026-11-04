@@ -1,0 +1,24 @@
+{
+  "schema": "qw9/builds/v1",
+  "run_id": "demo01",
+  "results": [
+    {
+      "id": "d1",
+      "status": "BUILT",
+      "attempts": 1,
+      "seconds": 0.4
+    },
+    {
+      "id": "d2",
+      "status": "BUILT",
+      "attempts": 1,
+      "seconds": 0.4
+    },
+    {
+      "id": "i1",
+      "status": "BUILT",
+      "attempts": 1,
+      "seconds": 0.3
+    }
+  ]
+}

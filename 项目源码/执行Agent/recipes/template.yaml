@@ -1,0 +1,29 @@
+# A1 配方模板：由 `qw9 gen expand` 做标记替换后生成每份 recipe.yaml。
+# 注意：{SRC} 是 builder 的运行时记号（构建时替换为实际源码树路径），不要动它。
+apiVersion: qw9/v1
+kind: VariantRecipe
+metadata:
+  id: @@ID@@
+  role: @@ROLE@@
+  description: "@@AXIS@@轴候选 @@ID@@：@@DESC@@"
+source:
+  package: @@TARBALL@@
+  sha256: @@SHA@@
+toolchain:
+  cc: @@CC@@
+  cc_min_version: "9"
+flags:
+  cflags: "@@CFLAGS@@"
+  ldflags: "@@LDFLAGS@@"
+configure:
+  args: @@CONFIGURE_ARGS@@
+  env:
+    SOURCE_DATE_EPOCH: "1631836800"
+install:
+  prefix: @@PREFIX@@
+  workroot: /root/work/qw9
+  bin: @@BIN@@
+build:
+  jobs: 4
+verify:
+  require_fortify: @@REQUIRE_FORTIFY@@

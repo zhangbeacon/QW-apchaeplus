@@ -1,0 +1,29 @@
+# V3 隔离策略：声明业务必须可读/可写的资源，其余收紧。
+# 运行在 /opt（Linux FS）——drvfs(/mnt/*) 不支持 chmod/chown，禁止把标记放 /mnt。
+apiVersion: qw9/v1
+kind: IsolationPolicy
+metadata:
+  id: v3-minpriv
+  description: "同能力最小权限：CGI/Lua/正反代理/rewrite/keepalive 全保留，只收紧越界目标与 UDS"
+runtime:
+  user: httpd-v3
+  group: httpd-v3
+  server_root: /opt/qw9/v3
+business_readable:      # 相对 server_root；功能一致性门(G2)所需，全员可读
+  - htdocs
+  - icons
+  - cgi-bin
+  - lua
+  - conf
+  - modules
+  - bin
+writable:               # 变体用户属主（logs/access/error、cgid socket、UDS 白名单目录）
+  - logs
+  - run
+uds:
+  allowed_dir: run/uds          # 声明的 UDS 后端 socket（root:httpd-v3 0750）
+  blocked_dir: /opt/qw9/markers/evil   # 非业务任意 UDS（root:root 0700）
+markers:                # 差异观测点：V1(root)可读 / V3(httpd-v3)不可读
+  - path: /opt/qw9/markers/root-only.txt
+    content: "QW9_ROOT_ONLY_MARKER v1\n"
+    mode: "0600"

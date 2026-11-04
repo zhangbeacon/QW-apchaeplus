@@ -1,0 +1,72 @@
+{
+  "schema": "qw9/traceability/v1",
+  "run_id": "demo01",
+  "plan_sha": "5c3d47c57bdb921f5d5fcdbc80a513ea8bf6088cd3def87ab112bc00ad0f7b6c",
+  "source": {
+    "package": "/mnt/e/强网拟态/03_platform/demo-target/demo-vuln-app-1.0.tar.gz",
+    "sha256": "a8bada7b5578923d76ff3995f73545008fda1944d184f879d5ab33728c718075"
+  },
+  "scores": {
+    "path": "/mnt/e/强网拟态/03_platform/artifacts/demo01/hde.json",
+    "sha256": "7c70a527b9a58a0867510f7d52f61e2622ac78c371937a8aff0edb47d9a7f54f",
+    "score_key": "score",
+    "note": "评估 Agent 产出，A1 只读"
+  },
+  "V2": {
+    "id": "d2",
+    "axis": "harden",
+    "params": {
+      "cc": "gcc",
+      "opt": "O2",
+      "allocator": "ptmalloc",
+      "mpm": "",
+      "harden": true
+    },
+    "prefix": "/opt/qw9/d2",
+    "port": 8401,
+    "recipe_sha256": "e0073721890c7e69bdb8bb4d95ef8ab0f27535c4fb7b6436717458dcf4ead538",
+    "httpd_sha256": null,
+    "toolchain": {
+      "cc": "/usr/bin/gcc",
+      "version": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    },
+    "cflags": "-O2 -g -ffile-prefix-map={SRC}=. -fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+    "allocator_env": {},
+    "selection": {
+      "score": 0.5,
+      "runner_up": null,
+      "margin": null,
+      "risks": [],
+      "diff_axes_vs_baseline": [
+        "harden"
+      ],
+      "baseline_id": "d1"
+    }
+  },
+  "V3": {
+    "id": "i1",
+    "axis": "isolation",
+    "params": {
+      "cc": "gcc",
+      "opt": "O2",
+      "allocator": "ptmalloc",
+      "mpm": "",
+      "harden": false
+    },
+    "prefix": "/opt/qw9/i1",
+    "port": 8402,
+    "recipe_sha256": "c7e83d7b9db5a49f98416c9a78ead3b28bec0dcf2ba0728ef73dc7c07ebd4ff3",
+    "httpd_sha256": null,
+    "toolchain": {
+      "cc": "/usr/bin/gcc",
+      "version": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    },
+    "cflags": "-O2 -g -ffile-prefix-map={SRC}=.",
+    "allocator_env": {},
+    "preregistered": true
+  },
+  "excluded": {
+    "d1": "分数 N/A",
+    "i1": "轴不在 v2_axes（isolation，V3 预注册轴不参与挑选）"
+  }
+}

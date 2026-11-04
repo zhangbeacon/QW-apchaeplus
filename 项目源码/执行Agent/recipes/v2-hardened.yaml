@@ -1,0 +1,43 @@
+# V2 加固编译栈：clang + O2 + FORTIFY2 + SSP + PIE/RELRO，全 DSO 同参数重编。
+# 边界：FORTIFY 依赖可推导对象尺寸，APR pool 封装内不保证覆盖——manifest 只报事实。
+# allocator 不进 V2 身份；需要探索时复制本文件改 id/prefix 单独实验（轨道 E）。
+apiVersion: qw9/v1
+kind: VariantRecipe
+metadata:
+  id: v2-hardened
+  role: CANDIDATE
+  description: "V2 = 加固编译栈（clang/-O2/FORTIFY2/SSP/PIE/RELRO），差异来源=编译期检测与边界"
+source:
+  package: ../../cve/_downloads/httpd-2.4.49.tar.gz
+  sha256: 345d3b9b218b1974d1cebd5ae72f6a661d83b52d839310222ff9ec94abb62205
+toolchain:
+  cc: clang
+  cc_min_version: "14"
+flags:
+  cflags: "-O2 -g -fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2 -ffile-prefix-map={SRC}=."
+  ldflags: "-pie -Wl,-z,relro,-z,now"
+configure:
+  args:
+    - "--with-apr=/usr"
+    - "--with-apr-util=/usr"
+    - "--with-pcre=/usr"
+    - "--with-lua=/usr"
+    - "--enable-mods-shared=most"
+    - "--enable-cgi"
+    - "--enable-cgid"
+    - "--enable-lua"
+    - "--enable-proxy"
+    - "--enable-proxy-http"
+    - "--enable-proxy-connect"
+    - "--enable-so"
+    - "--enable-rewrite"
+    - "--enable-headers"
+  env:
+    SOURCE_DATE_EPOCH: "1631836800"
+install:
+  prefix: /opt/qw9/v2
+  workroot: /root/work/qw9
+build:
+  jobs: 4
+verify:
+  require_fortify: true

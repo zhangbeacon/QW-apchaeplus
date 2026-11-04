@@ -2,6 +2,7 @@
 
 > 三 Agent 里的 **A1**。只写它自己这一块：**干什么、按什么步骤干、代码落在哪**。
 > 判定、打分、写报告不在这里——分别在**监管 Agent**和**评估 Agent**。
+> 实现：`项目源码/执行Agent/`（qw9 流水线）；接口：[执行Agent-接口契约.md](执行Agent-接口契约.md)；运行记录：[运行证据/](运行证据/)。
 
 ---
 
@@ -25,9 +26,9 @@
 
 | | 内容 | 存在哪 |
 |---|---|---|
-| 输入 | `plan.yaml`：12 组参数（编译器/优化/分配器/线程模式/加固） | `platform/plans/` |
-| 输入 | 配方模板 `recipes/template.yaml` | `platform/recipes/` |
-| 输入 | 源码包 `httpd-2.4.49.tar.bz2` | `cve/_downloads/` |
+| 输入 | `plan.yaml`：12 组参数（编译器/优化/分配器/线程模式/加固） | `项目源码/执行Agent/plans/` |
+| 输入 | 配方模板 `recipes/template.yaml` | `项目源码/执行Agent/recipes/` |
+| 输入 | 源码包 `httpd-2.4.49.tar.gz` | `cve/_downloads/` |
 | 输出 | 12 个变体二进制 | `/opt/qw9/<id>/` |
 | 输出 | 每个变体的 `manifest.json`（哈希、编译器、FORTIFY 符号） | `artifacts/<run_id>/<id>/` |
 | 输出 | 每个变体的 `build.log`（失败时是证据） | 同上 |
@@ -117,10 +118,10 @@ V3 走**隔离轴**（独立低权用户、敏感文件 root-only、UDS 目录�
 
 ## 6. 代码结构
 
-复用本地工作区的 `platform/src/qw9`（**代码未入库，本节目录树、函数与 CLI 均为拟建契约，不代表已实现**），只新增一个子模块：
+复用现有 `项目源码/执行Agent/src/qw9`，只新增一个子模块：
 
 ```
-platform/src/qw9/
+项目源码/执行Agent/src/qw9/
 ├── domain.py      # 已有：Recipe / IsolationPolicy / sha256 / canonical_hash
 ├── builder.py     # 已有：build() / collect_manifest() / repro_check()
 ├── isolator.py    # 已有：apply() / verify_access()

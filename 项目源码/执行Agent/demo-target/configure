@@ -1,0 +1,13 @@
+#!/bin/sh
+# 极简 configure：接受 --prefix=PREFIX，生成 config.mk（足够让 builder.build 当标准包用）
+PREFIX=/usr/local
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --prefix=*) PREFIX="${1#--prefix=}" ;;
+    esac
+    shift
+done
+cat > config.mk <<EOF
+PREFIX := $PREFIX
+EOF
+echo "configure OK: PREFIX=$PREFIX"

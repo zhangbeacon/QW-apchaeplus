@@ -1,0 +1,39 @@
+# 业务契约：V1/V2/V3 必须全部通过的能力清单（G2 功能一致性门）。
+# 任何变体关闭以下能力制造差异 = 违反 P023，直接淘汰。
+apiVersion: qw9/v1
+kind: BusinessContract
+metadata:
+  id: apache-business-v1
+capabilities:
+  - id: static-file
+    desc: 静态文件服务
+    request: { method: GET, path: / }
+    expect: { status: 200, body_contains: "QW9-LAB" }
+  - id: cgi-exec
+    desc: CGI 脚本执行（41773 RCE 的业务面）
+    request: { method: GET, path: /cgi-bin/env.sh }
+    expect: { status: 200, body_contains: "QW9_CGI_OK" }
+  - id: lua-parsebody
+    desc: Lua handler 正常调用（44790/22719 的业务面）
+    request: { method: POST, path: /parsebody, content_type: text/plain, data: "x=1" }
+    expect: { status: 200, body_contains: "PARSEBODY" }
+  - id: rewrite
+    desc: RewriteRule 正常重写（25690/38474 的业务面）
+    request: { method: GET, path: /rw/hello }
+    expect: { status: 200, body_contains: "QW9-REWRITE-TARGET" }
+  - id: proxy-reverse-uds
+    desc: 反向代理到声明的 UDS 后端（44224 的业务面）
+    request: { method: GET, path: /uds/ping }
+    expect: { status: 200, body_contains: "SECRET_FROM_declared" }
+  - id: proxy-forward
+    desc: 正向代理取回环 HTTP 后端（44224 前提能力）
+    request:
+      method: GET
+      path: "http://127.0.0.1:8199/ping"
+      via_proxy: true
+    expect: { status: 200, body_contains: "TCP_PONG" }
+  - id: keepalive
+    desc: 同 TCP 连接两个请求（22720 前提能力）
+    request:
+      keepalive_paths: ["/", "/"]
+    expect: { status: 200 }

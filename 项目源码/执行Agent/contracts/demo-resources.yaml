@@ -1,0 +1,20 @@
+# demo 隔离策略：独立低权用户 + root-only 标记不可读
+# 与 Apache V3 同构的最小版：业务可读 bin，可写 logs/run，标记文件 0600 root
+apiVersion: qw9/v1
+kind: IsolationPolicy
+metadata:
+  id: demo-minpriv
+runtime:
+  user: demo-v3
+  group: demo-v3
+  server_root: /opt/qw9/i1
+business_readable:
+  - bin
+writable:
+  - logs
+  - run
+uds: {}
+markers:
+  - path: /opt/qw9-demo/markers/root-only.txt
+    content: "DEMO_ROOT_ONLY_SECRET_v1\n"
+    mode: "0600"

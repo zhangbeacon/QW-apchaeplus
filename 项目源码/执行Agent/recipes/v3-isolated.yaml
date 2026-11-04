@@ -1,0 +1,44 @@
+# V3 = 同业务能力下的资源可达边界异构（P017 权限分离/隔离策略）。
+# 构建层与 V1 相同（gcc -O2）；差异全部来自 isolation 声明的运行期边界。
+# 结论措辞边界：这是"利用受抑制/后果受限"，不是"漏洞消除"。
+apiVersion: qw9/v1
+kind: VariantRecipe
+metadata:
+  id: v3-isolated
+  role: CANDIDATE
+  description: "V3 = 业务资源隔离（独立 UID + root-only 标记不可达 + UDS 目录收口），CGI/Lua/proxy/rewrite/keepalive 全保留"
+source:
+  package: ../../cve/_downloads/httpd-2.4.49.tar.gz
+  sha256: 345d3b9b218b1974d1cebd5ae72f6a661d83b52d839310222ff9ec94abb62205
+toolchain:
+  cc: gcc
+  cc_min_version: "9"
+flags:
+  cflags: "-O2 -g -ffile-prefix-map={SRC}=."
+  ldflags: ""
+configure:
+  args:
+    - "--with-apr=/usr"
+    - "--with-apr-util=/usr"
+    - "--with-pcre=/usr"
+    - "--with-lua=/usr"
+    - "--enable-mods-shared=most"
+    - "--enable-cgi"
+    - "--enable-cgid"
+    - "--enable-lua"
+    - "--enable-proxy"
+    - "--enable-proxy-http"
+    - "--enable-proxy-connect"
+    - "--enable-so"
+    - "--enable-rewrite"
+    - "--enable-headers"
+  env:
+    SOURCE_DATE_EPOCH: "1631836800"
+install:
+  prefix: /opt/qw9/v3
+  workroot: /root/work/qw9
+build:
+  jobs: 4
+verify:
+  require_fortify: false
+isolation: ../contracts/apache-resources.yaml

@@ -1,0 +1,69 @@
+ServerRoot "{{PREFIX}}"
+ServerName 127.0.0.1:{{PORT}}
+Listen {{PORT}}
+PidFile logs/httpd.pid
+
+Timeout 60
+KeepAlive On
+MaxKeepAliveRequests 100
+KeepAliveTimeout 5
+LimitRequestLine 8190
+
+LoadModule unixd_module modules/mod_unixd.so
+LoadModule authz_core_module modules/mod_authz_core.so
+LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule log_config_module modules/mod_log_config.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule alias_module modules/mod_alias.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule env_module modules/mod_env.so
+LoadModule setenvif_module modules/mod_setenvif.so
+LoadModule autoindex_module modules/mod_autoindex.so
+LoadModule cgid_module modules/mod_cgid.so
+LoadModule lua_module modules/mod_lua.so
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+LoadModule rewrite_module modules/mod_rewrite.so
+
+{{USER_BLOCK}}
+ErrorLog logs/error_log
+LogLevel info
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+CustomLog logs/access_log common
+
+DocumentRoot "{{PREFIX}}/htdocs"
+<Directory "{{PREFIX}}/htdocs">
+    AllowOverride None
+    Options Indexes FollowSymLinks
+    Require all granted
+</Directory>
+
+Alias /icons/ "{{PREFIX}}/icons/"
+<Directory "{{PREFIX}}/icons">
+    Require all granted
+</Directory>
+
+ScriptAlias /cgi-bin/ "{{PREFIX}}/cgi-bin/"
+<Directory "{{PREFIX}}/cgi-bin">
+    Options +ExecCGI
+    Require all granted
+</Directory>
+
+# ---- 业务能力：Lua handler ----
+LuaMapHandler /parsebody "{{PREFIX}}/lua/parsebody.lua"
+
+# ---- 业务能力：rewrite ----
+RewriteEngine On
+RewriteRule ^/rw/(.*)$ /target.html [PT]
+
+# ---- 业务能力：代理（正向 + 反向 UDS；44224 业务面，全部保留） ----
+ProxyRequests On
+<Proxy *>
+    Require all granted
+</Proxy>
+ProxyPass /uds/ unix://{{UDS_DIR}}/declared.sock|http://uds-backend/
+
+TypesConfig conf/mime.types
+DirectoryIndex index.html

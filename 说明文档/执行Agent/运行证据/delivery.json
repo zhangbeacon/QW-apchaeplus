@@ -1,0 +1,16 @@
+{
+  "schema": "qw9/delivery/v1",
+  "run_id": "demo01",
+  "V2": {
+    "candidate": "d2",
+    "prefix": "/opt/qw9/d2",
+    "dir": "/mnt/e/强网拟态/03_platform/delivery/demo01/V2"
+  },
+  "V3": {
+    "candidate": "i1",
+    "prefix": "/opt/qw9/i1",
+    "dir": "/mnt/e/强网拟态/03_platform/delivery/demo01/V3",
+    "preregistered": true
+  },
+  "traceability": "/mnt/e/强网拟态/03_platform/delivery/demo01/traceability.json"
+}

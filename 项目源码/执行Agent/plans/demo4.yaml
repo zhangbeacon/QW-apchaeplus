@@ -1,0 +1,35 @@
+# A1 demo 计划：最小目标程序 demo-vuln-app 1.0（秒级构建）
+# 目的：在砸 Apache 13 连构建之前，端到端验证 plan→expand→build→verify→deliver 全链
+# 差异设计（真实可观测）：
+#   d1 基线（显式关栈保护）   溢出攻击 → SIGSEGV(11)；root 可读 root-only 标记
+#   d2 加固（FORTIFY/SSP）    同一攻击 → SIGABRT(6) stack smashing —— 漏洞仍在、表型不同（P029）
+#   i1 隔离（预注册=V3）      同 d1 构建 + 独立低权用户 → 标记读取被拒（P030 后果受限）
+apiVersion: qw9/v1
+kind: GenerationPlan
+metadata:
+  id: demo4
+base:
+  source:
+    package: ../demo-target/demo-vuln-app-1.0.tar.gz
+    sha256: a8bada7b5578923d76ff3995f73545008fda1944d184f879d5ab33728c718075
+  configure_args: []
+  bin_name: demo_app
+  timeout_s: 120
+allocator: {}
+ports:
+  start: 8400
+candidates:
+  - { id: d1, axis: compile, role: BASELINE, cc: gcc, opt: O2, allocator: ptmalloc, mpm: "", harden: false,
+      extra_cflags: "-fno-stack-protector -U_FORTIFY_SOURCE", desc: "基线（显式关栈保护+关FORTIFY）" }
+  - { id: d2, axis: harden, cc: gcc, opt: O2, allocator: ptmalloc, mpm: "", harden: true,
+      desc: "加固栈（FORTIFY/SSP）" }
+isolation_candidates:
+  - id: i1
+    axis: isolation
+    base_params: { cc: gcc, opt: O2, allocator: ptmalloc, mpm: "", harden: false }
+    policy: ../contracts/demo-resources.yaml
+    desc: "V3 预注册：独立 UID + root-only 标记不可读"
+delivery:
+  baseline_id: d1
+  v2_axes: [compile, harden]
+  v3_preregistered: i1

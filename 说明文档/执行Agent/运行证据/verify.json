@@ -1,0 +1,106 @@
+{
+  "schema": "qw9/genverify/v1",
+  "run_id": "demo01",
+  "candidates": {
+    "d1": {
+      "ok": true,
+      "checks": [
+        {
+          "what": "binary_exists",
+          "ok": true,
+          "detail": "/opt/qw9/d1/bin"
+        },
+        {
+          "what": "manifest_exists",
+          "ok": true,
+          "detail": "/mnt/e/强网拟态/03_platform/artifacts/demo01/d1/manifest.json"
+        },
+        {
+          "what": "manifest_covers_modules",
+          "ok": true,
+          "detail": "files=1/min=1"
+        },
+        {
+          "what": "bin_sha_matches_manifest",
+          "ok": true,
+          "detail": "bin/demo_app"
+        },
+        {
+          "what": "allocator_default",
+          "ok": true,
+          "detail": "ptmalloc 无需预加载"
+        }
+      ]
+    },
+    "d2": {
+      "ok": true,
+      "checks": [
+        {
+          "what": "binary_exists",
+          "ok": true,
+          "detail": "/opt/qw9/d2/bin"
+        },
+        {
+          "what": "manifest_exists",
+          "ok": true,
+          "detail": "/mnt/e/强网拟态/03_platform/artifacts/demo01/d2/manifest.json"
+        },
+        {
+          "what": "manifest_covers_modules",
+          "ok": true,
+          "detail": "files=1/min=1"
+        },
+        {
+          "what": "bin_sha_matches_manifest",
+          "ok": true,
+          "detail": "bin/demo_app"
+        },
+        {
+          "what": "fortify_symbols_present",
+          "ok": true,
+          "detail": "coverage=1.0"
+        },
+        {
+          "what": "allocator_default",
+          "ok": true,
+          "detail": "ptmalloc 无需预加载"
+        }
+      ]
+    },
+    "i1": {
+      "ok": true,
+      "checks": [
+        {
+          "what": "binary_exists",
+          "ok": true,
+          "detail": "/opt/qw9/i1/bin"
+        },
+        {
+          "what": "manifest_exists",
+          "ok": true,
+          "detail": "/mnt/e/强网拟态/03_platform/artifacts/demo01/i1/manifest.json"
+        },
+        {
+          "what": "manifest_covers_modules",
+          "ok": true,
+          "detail": "files=1/min=1"
+        },
+        {
+          "what": "bin_sha_matches_manifest",
+          "ok": true,
+          "detail": "bin/demo_app"
+        },
+        {
+          "what": "allocator_default",
+          "ok": true,
+          "detail": "ptmalloc 无需预加载"
+        },
+        {
+          "what": "isolation_selfcheck_ok",
+          "ok": true,
+          "detail": "/mnt/e/强网拟态/03_platform/artifacts/demo01/i1/isolate-verify.json"
+        }
+      ]
+    }
+  }
+}

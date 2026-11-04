@@ -1,0 +1,41 @@
+# V1 基线：官方 tarball + gcc -O2，与 cve/apache/build/build.sh(normal) 对齐。
+apiVersion: qw9/v1
+kind: VariantRecipe
+metadata:
+  id: v1-normal
+  role: BASELINE
+  description: "V1 = Apache httpd 2.4.49 原始构建（gcc -O2），唯一计分基线；ASAN 构建另册，不得当 V1/V2"
+source:
+  package: ../../cve/_downloads/httpd-2.4.49.tar.gz
+  sha256: 345d3b9b218b1974d1cebd5ae72f6a661d83b52d839310222ff9ec94abb62205
+toolchain:
+  cc: gcc
+  cc_min_version: "9"
+flags:
+  cflags: "-O2 -g -ffile-prefix-map={SRC}=."
+  ldflags: ""
+configure:
+  args:
+    - "--with-apr=/usr"
+    - "--with-apr-util=/usr"
+    - "--with-pcre=/usr"
+    - "--with-lua=/usr"
+    - "--enable-mods-shared=most"
+    - "--enable-cgi"
+    - "--enable-cgid"
+    - "--enable-lua"
+    - "--enable-proxy"
+    - "--enable-proxy-http"
+    - "--enable-proxy-connect"
+    - "--enable-so"
+    - "--enable-rewrite"
+    - "--enable-headers"
+  env:
+    SOURCE_DATE_EPOCH: "1631836800"
+install:
+  prefix: /opt/qw9/v1
+  workroot: /root/work/qw9
+build:
+  jobs: 4
+verify:
+  require_fortify: false

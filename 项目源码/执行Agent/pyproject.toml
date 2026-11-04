@@ -1,0 +1,16 @@
+[project]
+name = "qw9"
+version = "0.1.0"
+description = "Qw9 Apache heterogenous variant generation pipeline (V1/V2/V3)"
+requires-python = ">=3.8"
+dependencies = ["PyYAML>=5.4"]
+
+[project.scripts]
+qw9 = "qw9.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

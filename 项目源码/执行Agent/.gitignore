@@ -1,0 +1,6 @@
+artifacts/
+recipes/gen/
+delivery/
+__pycache__/
+*.pyc
+*.egg-info/

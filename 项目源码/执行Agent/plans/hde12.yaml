@@ -1,0 +1,55 @@
+# A1 生成计划：12 编译类候选（四轴一对一归因）+ 预注册隔离候选 i1（=V3，不参与打分）。
+# 对应设计：说明文档/执行Agent/执行Agent-设计说明.md §4.1
+# 注意：MPM 轴依赖 --enable-mpms-shared=all；分配器轴靠 LD_PRELOAD（verify 阶段实证生效）。
+apiVersion: qw9/v1
+kind: GenerationPlan
+metadata:
+  id: hde12
+base:
+  source:
+    package: ../../cve/_downloads/httpd-2.4.49.tar.gz
+    sha256: 345d3b9b218b1974d1cebd5ae72f6a661d83b52d839310222ff9ec94abb62205
+  configure_args:
+    - "--with-apr=/usr"
+    - "--with-apr-util=/usr"
+    - "--with-pcre=/usr"
+    - "--with-lua=/usr"
+    - "--enable-mods-shared=most"
+    - "--enable-cgi"
+    - "--enable-cgid"
+    - "--enable-lua"
+    - "--enable-proxy"
+    - "--enable-proxy-http"
+    - "--enable-proxy-connect"
+    - "--enable-so"
+    - "--enable-rewrite"
+    - "--enable-headers"
+    - "--enable-mpms-shared=all"
+  timeout_s: 1800
+allocator:
+  jemalloc: libjemalloc.so.2
+ports:
+  start: 8200
+candidates:
+  - { id: c1, axis: compile, role: BASELINE, cc: gcc,   opt: O2, allocator: ptmalloc, mpm: event,   harden: false, desc: "基线（=V1 配置）" }
+  - { id: c2, axis: compile, cc: gcc,   opt: O0, allocator: ptmalloc, mpm: event,   harden: false, desc: "只差优化级别" }
+  - { id: c3, axis: compile, cc: clang, opt: O2, allocator: ptmalloc, mpm: event,   harden: false, desc: "只差编译器" }
+  - { id: c4, axis: compile, cc: clang, opt: O0, allocator: ptmalloc, mpm: event,   harden: false, desc: "clang+O0" }
+  - { id: c5, axis: compile, cc: gcc,   opt: O2, allocator: jemalloc, mpm: event,   harden: false, desc: "只差分配器" }
+  - { id: c6, axis: compile, cc: gcc,   opt: O0, allocator: jemalloc, mpm: event,   harden: false, desc: "O0+jemalloc" }
+  - { id: c7, axis: compile, cc: clang, opt: O2, allocator: jemalloc, mpm: event,   harden: false, desc: "clang+jemalloc" }
+  - { id: c8, axis: compile, cc: clang, opt: O0, allocator: jemalloc, mpm: event,   harden: false, desc: "clang O0+jemalloc" }
+  - { id: h1, axis: harden,  cc: gcc,   opt: O2, allocator: ptmalloc, mpm: event,   harden: true,  desc: "gcc+加固" }
+  - { id: h2, axis: harden,  cc: clang, opt: O2, allocator: ptmalloc, mpm: event,   harden: true,  desc: "clang+加固" }
+  - { id: m1, axis: thread,  cc: gcc,   opt: O2, allocator: ptmalloc, mpm: prefork, harden: false, desc: "prefork MPM" }
+  - { id: m2, axis: thread,  cc: gcc,   opt: O2, allocator: ptmalloc, mpm: worker,  harden: false, desc: "worker MPM" }
+isolation_candidates:
+  - id: i1
+    axis: isolation
+    base_params: { cc: gcc, opt: O2, allocator: ptmalloc, mpm: event, harden: false }
+    policy: ../contracts/apache-resources.yaml
+    desc: "V3 预注册：资源边界隔离，不参与打分"
+delivery:
+  baseline_id: c1
+  v2_axes: [compile, harden, thread]
+  v3_preregistered: i1
