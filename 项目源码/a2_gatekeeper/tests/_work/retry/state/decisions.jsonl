@@ -1,0 +1,4 @@
+{"id": "dec-20261104-193310-9c22", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "build", "target": "V2"}, "decision": "approve", "reason": "ok"}
+{"id": "dec-20261104-193310-b695", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "build", "target": "V2"}, "decision": "approve", "reason": "ok"}
+{"id": "dec-20261104-193310-5d35", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "build", "target": "V2"}, "decision": "approve", "reason": "ok"}
+{"id": "dec-20261104-193310-19cb", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "build", "target": "V2"}, "decision": "reject", "reason": "retry limit reached (3)"}

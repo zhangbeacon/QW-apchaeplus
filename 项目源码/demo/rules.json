@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "thresholds": {
+    "max_retries": 3,
+    "min_differences": 3,
+    "entropy_max": 0.15
+  },
+  "allowed_variants": ["V1", "V2", "V3"],
+  "functional": {
+    "capabilities": [
+      {"id": "static", "probe": "GET /index.html", "expect": "200 + marker"},
+      {"id": "cgi", "probe": "GET /cgi-bin/env.sh", "expect": "200 + env"},
+      {"id": "lua", "probe": "POST /parse.lua", "expect": "200 + fields"},
+      {"id": "forward_proxy", "probe": "GET via proxy", "expect": "200 + body"},
+      {"id": "reverse_proxy", "probe": "GET /uds/", "expect": "200 + body"},
+      {"id": "rewrite", "probe": "GET /rewrite/", "expect": "mapped path"},
+      {"id": "headers", "probe": "GET /index.html", "expect": "security headers"}
+    ]
+  }
+}

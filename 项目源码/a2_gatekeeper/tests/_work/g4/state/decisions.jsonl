@@ -1,0 +1,2 @@
+{"id": "dec-20261104-193310-db35", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "target", "target": "V2"}, "decision": "reject", "reason": "G4 not passed; target/expand is not allowed"}
+{"id": "dec-20261104-193310-9805", "ts": "2026-11-04T19:33:10+0800", "request": {"action": "target", "target": "V2"}, "decision": "approve", "reason": "ok"}

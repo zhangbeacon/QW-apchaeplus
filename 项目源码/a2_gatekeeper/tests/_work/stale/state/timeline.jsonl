@@ -1,0 +1,2 @@
+{"ts": "2026-11-04T19:33:10+0800", "seq": 1, "actor": "A2", "action": "archive", "target": "run-1", "result": "fresh", "detail": {"evidence_dir": "C:\\Users\\28637\\Desktop\\强网设计\\A2-监管Agent提交\\项目源码\\a2_gatekeeper\\tests\\_work\\stale\\evidence"}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 2, "actor": "A2", "action": "evidence_check", "target": "run-1", "result": "fail", "detail": {"issues": ["stale evidence: security.json predates run"]}}

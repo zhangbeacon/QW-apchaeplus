@@ -1,0 +1,2 @@
+{"ts": "2026-11-04T19:33:10+0800", "seq": 1, "actor": "A2", "action": "gate", "target": "", "result": "evaluated", "detail": {"G0": true, "G1": false, "G2": false, "G3": true, "G4": true}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 2, "actor": "A2", "action": "gate", "target": "", "result": "evaluated", "detail": {"G0": true, "G1": false, "G2": true, "G3": true, "G4": true}}

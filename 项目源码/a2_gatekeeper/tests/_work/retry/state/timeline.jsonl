@@ -1,0 +1,4 @@
+{"ts": "2026-11-04T19:33:10+0800", "seq": 1, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "build", "target": "V2"}, "reason": "ok", "id": "dec-20261104-193310-9c22"}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 2, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "build", "target": "V2"}, "reason": "ok", "id": "dec-20261104-193310-b695"}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 3, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "build", "target": "V2"}, "reason": "ok", "id": "dec-20261104-193310-5d35"}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 4, "actor": "A2", "action": "approval", "target": "V2", "result": "reject", "detail": {"request": {"action": "build", "target": "V2"}, "reason": "retry limit reached (3)", "id": "dec-20261104-193310-19cb"}}

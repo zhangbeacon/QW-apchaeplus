@@ -1,0 +1,3 @@
+{"ts": "2026-11-04T19:33:10+0800", "seq": 1, "actor": "A2", "action": "approval", "target": "V2", "result": "reject", "detail": {"request": {"action": "target", "target": "V2"}, "reason": "G4 not passed; target/expand is not allowed", "id": "dec-20261104-193310-db35"}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 2, "actor": "A2", "action": "gate", "target": "", "result": "evaluated", "detail": {"G0": true, "G1": false, "G2": true, "G3": true, "G4": true}}
+{"ts": "2026-11-04T19:33:10+0800", "seq": 3, "actor": "A2", "action": "approval", "target": "V2", "result": "approve", "detail": {"request": {"action": "target", "target": "V2"}, "reason": "ok", "id": "dec-20261104-193310-9805"}}

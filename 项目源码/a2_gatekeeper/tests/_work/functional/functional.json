@@ -1,0 +1,1 @@
+{"run_id": "r1", "capabilities": [{"id": "static", "pass": true}, {"id": "cgi", "pass": true}, {"id": "lua", "pass": true}, {"id": "forward_proxy", "pass": true}, {"id": "reverse_proxy", "pass": true}, {"id": "rewrite", "pass": true}, {"id": "headers", "pass": true}]}

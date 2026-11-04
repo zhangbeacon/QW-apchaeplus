@@ -1,0 +1,23 @@
+{
+  "G0": {
+    "pass": true,
+    "reason": "spec frozen"
+  },
+  "G1": {
+    "pass": false,
+    "reason": "G1 env manifest missing"
+  },
+  "G2": {
+    "pass": true,
+    "reason": "7/7 capabilities pass",
+    "run_id": "r1"
+  },
+  "G3": {
+    "pass": true,
+    "reason": "V1 positive + fixed negative present"
+  },
+  "G4": {
+    "pass": true,
+    "reason": "3 independent differences"
+  }
+}

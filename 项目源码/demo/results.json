@@ -1,0 +1,9 @@
+{
+  "v1_positive": true,
+  "fixed_negative": true,
+  "vulns": [
+    {"cve": "CVE-2021-41773", "v1": "exec", "v2": "exec", "v3": "blocked", "difference": true},
+    {"cve": "CVE-2021-44224", "v1": "ssrf", "v2": "ssrf", "v3": "blocked", "difference": true},
+    {"cve": "CVE-2021-44790", "v1": "crash", "v2": "crash", "v3": "blocked", "difference": true}
+  ]
+}
