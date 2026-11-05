@@ -1,0 +1,428 @@
+{
+  "variants": {
+    "c1": {
+      "group": "H",
+      "axis": "compile",
+      "spec": "gcc13 -O2 ptmalloc event bfd"
+    },
+    "c2": {
+      "group": "H",
+      "axis": "opt",
+      "spec": "gcc13 -O0 ptmalloc event bfd"
+    },
+    "c3": {
+      "group": "H",
+      "axis": "compile",
+      "spec": "clang17 -O2 ptmalloc event bfd"
+    },
+    "c4": {
+      "group": "H",
+      "axis": "opt",
+      "spec": "clang17 -O0 ptmalloc event bfd"
+    },
+    "c5": {
+      "group": "H",
+      "axis": "alloc",
+      "spec": "gcc13 -O2 jemalloc event bfd"
+    },
+    "c6": {
+      "group": "H",
+      "axis": "alloc",
+      "spec": "gcc13 -O0 jemalloc event bfd"
+    },
+    "c7": {
+      "group": "H",
+      "axis": "alloc",
+      "spec": "clang17 -O2 jemalloc event bfd"
+    },
+    "c8": {
+      "group": "H",
+      "axis": "alloc",
+      "spec": "clang17 -O0 jemalloc event bfd"
+    },
+    "h1": {
+      "group": "H",
+      "axis": "harden",
+      "spec": "gcc13 -O2 FORTIFY+SSP"
+    },
+    "h2": {
+      "group": "H",
+      "axis": "harden",
+      "spec": "clang17 -O2 FORTIFY+SSP"
+    },
+    "m1": {
+      "group": "H",
+      "axis": "mpm",
+      "spec": "gcc13 -O2 prefork"
+    },
+    "m2": {
+      "group": "H",
+      "axis": "mpm",
+      "spec": "gcc13 -O2 worker"
+    },
+    "s1": {
+      "group": "T",
+      "axis": "struct"
+    },
+    "s2": {
+      "group": "T",
+      "axis": "struct"
+    },
+    "s3": {
+      "group": "T",
+      "axis": "struct"
+    },
+    "s4": {
+      "group": "T",
+      "axis": "struct"
+    },
+    "V1": {
+      "group": "final",
+      "spec": "same as c1"
+    },
+    "V2": {
+      "group": "final",
+      "spec": "TBD (must be an H-group spec)"
+    },
+    "V3": {
+      "group": "final",
+      "spec": "TBD (must be an H-group spec)"
+    },
+    "b0_1": {
+      "group": "B0",
+      "spec": "same as V1"
+    },
+    "b0_2": {
+      "group": "B0",
+      "spec": "same as V1"
+    },
+    "b0_3": {
+      "group": "B0",
+      "spec": "same as V1"
+    },
+    "k1": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k2": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k3": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k4": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k5": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k6": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k7": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k8": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k9": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k10": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k11": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k12": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k13": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k14": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k15": {
+      "group": "Kh",
+      "spec": "same as c1"
+    },
+    "k16": {
+      "group": "Kh",
+      "spec": "same as c1"
+    }
+  },
+  "final": [
+    "V1",
+    "V2",
+    "V3"
+  ],
+  "b0": [
+    "b0_1",
+    "b0_2",
+    "b0_3"
+  ],
+  "h_group": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "h1",
+    "h2",
+    "m1",
+    "m2"
+  ],
+  "t_group": [
+    "s1",
+    "s2",
+    "s3",
+    "s4"
+  ],
+  "kh_group": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7",
+    "k8",
+    "k9",
+    "k10",
+    "k11",
+    "k12",
+    "k13",
+    "k14",
+    "k15",
+    "k16"
+  ],
+  "splits": {
+    "calibration": [
+      "41773",
+      "44790",
+      "22720"
+    ],
+    "validation": [
+      "44224",
+      "38474",
+      "25690"
+    ]
+  },
+  "hunks_overlap": {},
+  "axis_groups": {
+    "compile": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8"
+    ],
+    "harden": [
+      "h1",
+      "h2"
+    ],
+    "mpm": [
+      "m1",
+      "m2"
+    ],
+    "struct": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "contrasts": [
+    [
+      "c1",
+      "c3"
+    ],
+    [
+      "c1",
+      "c2"
+    ],
+    [
+      "c1",
+      "c5"
+    ],
+    [
+      "h1",
+      "c1"
+    ],
+    [
+      "c1",
+      "m1"
+    ],
+    [
+      "c1",
+      "m2"
+    ],
+    [
+      "s1",
+      "c1"
+    ]
+  ],
+  "factors": {
+    "c1": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c2": {
+      "compiler": "gcc",
+      "opt": "O0",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c3": {
+      "compiler": "clang",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c4": {
+      "compiler": "clang",
+      "opt": "O0",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c5": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "jemalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c6": {
+      "compiler": "gcc",
+      "opt": "O0",
+      "alloc": "jemalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c7": {
+      "compiler": "clang",
+      "opt": "O2",
+      "alloc": "jemalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "c8": {
+      "compiler": "clang",
+      "opt": "O0",
+      "alloc": "jemalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "V1": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "event"
+    },
+    "h1": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "fortify",
+      "mpm": "event"
+    },
+    "h2": {
+      "compiler": "clang",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "fortify",
+      "mpm": "event"
+    },
+    "m1": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "prefork"
+    },
+    "m2": {
+      "compiler": "gcc",
+      "opt": "O2",
+      "alloc": "ptmalloc",
+      "harden": "none",
+      "mpm": "worker"
+    }
+  },
+  "builds_per_cell": 1,
+  "classes": {
+    "c1": "pure",
+    "c2": "pure",
+    "c3": "pure",
+    "c4": "pure",
+    "c5": "pure",
+    "c6": "pure",
+    "c7": "pure",
+    "c8": "pure",
+    "h1": "pure",
+    "h2": "pure",
+    "m1": "pure",
+    "m2": "pure",
+    "s1": "struct",
+    "s2": "struct",
+    "s3": "struct",
+    "s4": "struct",
+    "V1": "pure",
+    "V2": "pure",
+    "V3": "isolation",
+    "b0_1": "pure",
+    "b0_2": "pure",
+    "b0_3": "pure",
+    "k1": "pure",
+    "k2": "pure",
+    "k3": "pure",
+    "k4": "pure",
+    "k5": "pure",
+    "k6": "pure",
+    "k7": "pure",
+    "k8": "pure",
+    "k9": "pure",
+    "k10": "pure",
+    "k11": "pure",
+    "k12": "pure",
+    "k13": "pure",
+    "k14": "pure",
+    "k15": "pure",
+    "k16": "pure"
+  },
+  "manifests": {
+    "dir": null,
+    "required_fields": [
+      "id",
+      "sha256",
+      "compiler"
+    ]
+  },
+  "status_overrides": {}
+}

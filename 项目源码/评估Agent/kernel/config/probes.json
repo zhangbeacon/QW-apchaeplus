@@ -1,0 +1,169 @@
+{
+  "cves": {
+    "41773": {
+      "cve": "CVE-2021-41773",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2",
+        "p3"
+      ],
+      "q": 4,
+      "markers": [
+        "root:x:0:0",
+        "uid=",
+        "gid=",
+        "ROOTONLY_MARKER"
+      ],
+      "log_patterns": [
+        "AH01241",
+        "End of script output before headers"
+      ]
+    },
+    "44224": {
+      "cve": "CVE-2021-44224",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2"
+      ],
+      "q": 4,
+      "markers": [
+        "PROTECTED_SECRET"
+      ],
+      "log_patterns": [
+        "AH00957",
+        "AH01114"
+      ]
+    },
+    "44790": {
+      "cve": "CVE-2021-44790",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2",
+        "p4"
+      ],
+      "q": 3,
+      "markers": [
+        "parsebody-done"
+      ],
+      "log_patterns": [
+        "block too big"
+      ]
+    },
+    "22720": {
+      "cve": "CVE-2022-22720",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2"
+      ],
+      "q": 4,
+      "markers": [
+        "PROTECTED_SECRET"
+      ],
+      "log_patterns": [
+        "discard"
+      ]
+    },
+    "25690": {
+      "cve": "CVE-2023-25690",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2"
+      ],
+      "q": 4,
+      "markers": [],
+      "log_patterns": []
+    },
+    "38474": {
+      "cve": "CVE-2024-38474",
+      "canonical": "p1",
+      "family": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "selection": [
+        "p1"
+      ],
+      "test": [
+        "p2"
+      ],
+      "q": 4,
+      "markers": [
+        "SECRET_MARKER",
+        "EXEC_MARKER"
+      ],
+      "log_patterns": [
+        "decoded_question"
+      ]
+    }
+  },
+  "chains": {
+    "41773": {
+      "probes": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "stage1": {
+        "min_state": "L2"
+      },
+      "stage2": {
+        "state": "L3"
+      }
+    },
+    "25690": {
+      "probes": [
+        "p1",
+        "p2"
+      ],
+      "stage1": {
+        "min_state": "L1"
+      },
+      "stage2": {
+        "min_state": "L2"
+      }
+    }
+  }
+}
